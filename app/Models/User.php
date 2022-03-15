@@ -57,8 +57,8 @@ class User extends Authenticatable
         return $this->hasMany(Support::class);
     }
 
-    public function replies()
+    public function views()
     {
-        return $this->hasMany(ReplySupport::class);
+        return $this->hasMany(View::class);
     }
 }

@@ -16,6 +16,7 @@ Route::get('/me', [AuthController::class, 'me'])->middleware(['auth:sanctum']);
 
 // RESET PASSWORD
 Route::post('/forgot-password', [ResetPasswordController::class, 'sendResetLink']);
+Route::post('/reset-password', [ResetPasswordController::class, 'resetPassword']);
 
 Route::middleware(['auth:sanctum'])->group(function() {
     Route::get('/courses', [CourseController::class, 'index']);
@@ -23,6 +24,7 @@ Route::middleware(['auth:sanctum'])->group(function() {
     Route::get('/courses/{id}/modules', [ModuleController::class, 'index']);
     Route::get('/modules/{id}/lessons', [LessonController::class, 'index']);
     Route::get('/lessons/{id}', [LessonController::class, 'show']);
+    Route::post('/lessons/viewed', [LessonController::class, 'viewed']);
     Route::get('/my-supports', [SupportController::class, 'mySupports']);
     Route::get('/supports', [SupportController::class, 'index']);
     Route::post('/supports', [SupportController::class, 'store']);
