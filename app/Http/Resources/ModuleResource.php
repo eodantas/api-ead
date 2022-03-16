@@ -15,6 +15,10 @@ class ModuleResource extends JsonResource
      */
     public function toArray($request)
     {
-        return ['id' => $this->id, 'name' => Str::ucfirst($this->name)];
+        return [
+            'id' => $this->id,
+            'name' => Str::ucfirst($this->name),
+            'lessons' => LessonResource::collection($this->whenLoaded('lessons'))
+        ];
     }
 }

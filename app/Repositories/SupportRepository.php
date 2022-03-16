@@ -41,7 +41,7 @@ class SupportRepository
                     $user = $this->getUserAuth();
                     $query->where('user_id', $user->id);
                 }
-            })->orderBy('updated_at')->get();
+            })->with('replies')->orderBy('updated_at')->get();
     }
 
     public function createNewSupport(array $data): Support

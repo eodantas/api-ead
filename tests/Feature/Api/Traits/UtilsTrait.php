@@ -6,11 +6,21 @@ use App\Models\User;
 
 trait UtilsTrait
 {
+    public function createUser()
+    {
+        return User::factory()->create();
+    }
+
     public function createTokenUser()
     {
-        $user = User::factory()->create();
+        $user = $this->createUser();
         $token = $user->createToken('teste')->plainTextToken;
 
         return $token;
+    }
+
+    public function defaultHeaders()
+    {
+        return ['Authorization' => "Bearer {$this->createTokenUser()}"];
     }
 }
